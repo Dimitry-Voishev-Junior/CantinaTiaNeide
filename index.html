@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cantina Tia Neide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="agendamento">
+    <div class="filter-container">
+      <label>
+        <input type="checkbox" class="filter-checkbox" value="salgado"> Salgado
+      </label>
+      <label>
+        <input type="checkbox" class="filter-checkbox" value="doce"> Doce
+      </label>
+      <label>
+        <input type="checkbox" class="filter-checkbox" value="bebida"> Bebidas
+      </label>
+    </div>
+    <div id="select-container" class="select-container hidden"></div>
+    <div id="image-container" class="image-container hidden"></div>
+    <div id="warning-message" class="hidden"></div>
+
+
+    <form class="dados">
+      <label for="name">Seu Nome:</label>
+      <input type="text" id="name" placeholder="Digite seu nome: " required>
+
+      <label for="time">Escolha o horário do lanche:</label>
+      <input type="time" id="time" required>
+
+      <div id="total" class="total">Total: R$ 0.00</div>
+      <button type="submit">Agendar Lanche</button>
+    </form>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: #F0F0F0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+}
+
+hidden {
+  display: none;
+}
+
+label {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+
+.image-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-wrapper {
+  margin-right: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.35  );
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.item-wrapper img {
+  max-width: 200px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.item-quantity {
+  margin-top: 5px;
+  width: 50px;
+  text-align: center;
+}
+
+input, select {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+.dados {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+#salgado-select, #doce-select, #bebida-select, #image-container{
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.item-wrapper {
+  width: 250px;
+  margin-bottom: 15px;
+}
+
+.item-wrapper img {
+  width: 200px;
+  margin-top: 15px;
+}
+
+.total {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.agendamento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#warning-message {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+
