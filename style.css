@@ -13,7 +13,7 @@ body {
   min-height: 100vh; 
 }
 
-hidden {
+.hidden {
   display: none;
 }
 
@@ -21,7 +21,6 @@ label {
   margin-right: 20px;
   font-size: 16px;
 }
-
 
 .image-container {
   margin-top: 20px;
@@ -35,7 +34,7 @@ label {
   padding: 10px;
   border: 1px solid #c5c5c5;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.35  );
+  background-color: rgba(255, 255, 255, 0.35);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -78,14 +77,13 @@ button:hover {
   background-color: #45a049;
 }
 
-
 .dados {
   display: flex;
   flex-direction: column;
   width: 250px;
 }
 
-#salgado-select, #doce-select, #bebida-select, #image-container{
+#salgado-select, #doce-select, #bebida-select, #image-container {
   display: flex;
   flex-direction: row;
   width: 250px;
@@ -120,4 +118,34 @@ button:hover {
   margin-bottom: 15px;
 }
 
+.input-container {
+  display: flex; 
+}
 
+.item-quantity {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.flavor-select {
+  display: block;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 5px; 
+  width: 100%;
+}
+
+.total {
+  font-size: 1.2em;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.item-price {
+  color: #28a745;
+  font-weight: bold;
+}
+
+#name {
+  margin-bottom: 10px;
+}
