@@ -113,7 +113,7 @@ button:hover {
 }
 
 #warning-message {
-  color: red;
+  color: #ff0000;
   font-size: 18px;
   margin-bottom: 15px;
 }
@@ -148,4 +148,12 @@ button:hover {
 
 #name {
   margin-bottom: 10px;
+}
+
+.remove-button {
+background-color: #ff0000;
+}
+
+.remove-button:hover{
+  background-color: #a90101;
 }

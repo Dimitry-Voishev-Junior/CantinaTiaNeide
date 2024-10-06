@@ -42,7 +42,6 @@ const menuItems = {
   ]
 };
 
-
 const checkboxes = document.querySelectorAll('.filter-checkbox');
 const selectContainer = document.getElementById('select-container');
 const imageContainer = document.getElementById('image-container');
@@ -113,14 +112,17 @@ function populateSelect(category) {
       itemPrice.textContent = `R$ ${selectedItem.price.toFixed(2)}`;
       itemPrice.classList.add('item-price');
 
+      let previousQuantity = 1;
+
       const quantityInput = document.createElement('input');
       quantityInput.type = 'number';
       quantityInput.value = 1;
       quantityInput.min = 1;
       quantityInput.classList.add('item-quantity');
       quantityInput.addEventListener('input', function() {
-        const quantity = parseInt(this.value) || 0;
-        updateTotal(quantity * selectedItem.price);
+        const newQuantity = parseInt(this.value) || 0;
+        updateTotal((newQuantity - previousQuantity) * selectedItem.price);
+        previousQuantity = newQuantity;
       });
 
       const flavorSelect = document.createElement('select');
