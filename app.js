@@ -21,7 +21,7 @@ const menuItems = {
         { name: 'Morango', img: 'img/suco_morango.png' },
         { name: 'Uva', img: 'img/suco_uva.png' },
         { name: 'Laranja', img: 'img/suco_laranja.png' },
-        { name: 'Pêssego', img: 'iimg/suco_de_caixinha.png' }
+        { name: 'Pêssego', img: 'img/suco_de_caixinha.png' }
       ]
     },
     {
