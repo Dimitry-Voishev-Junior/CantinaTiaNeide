@@ -45,19 +45,19 @@ const menuItems = {
 const checkboxes = document.querySelectorAll('.filter-checkbox');
 const selectContainer = document.getElementById('select-container');
 const imageContainer = document.getElementById('image-container');
-const warningMessage = document.getElementById('warning-message');
 const totalElement = document.getElementById('total');
 
 let total = 0;
+const selectedFlavors = new Set();
 
 const updateTotal = (price) => {
   total += price;
   totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
 };
 
-const itemAlreadyExists = (itemName) => {
+const getItemWrapper = (itemName) => {
   const existingItems = Array.from(imageContainer.children);
-  return existingItems.some(itemWrapper => {
+  return existingItems.find(itemWrapper => {
     const title = itemWrapper.querySelector('.item-title').textContent;
     return title === itemName;
   });
@@ -66,8 +66,6 @@ const itemAlreadyExists = (itemName) => {
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('change', () => {
     selectContainer.innerHTML = '';
-    warningMessage.classList.add('hidden');
-
     const selectedCategories = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
 
     if (selectedCategories.length > 0) {
@@ -97,8 +95,9 @@ const populateSelect = (category) => {
   select.addEventListener('change', function () {
     const itemName = this.options[this.selectedIndex].text;
     const selectedItem = menuItems[category].find(item => item.name === itemName);
+    const itemWrapper = getItemWrapper(itemName);
 
-    if (!itemAlreadyExists(itemName) || category === 'bebida') {
+    if (!itemWrapper || category === 'bebida') {
       const imgElement = document.createElement('img');
       imgElement.src = selectedItem.img;
       imgElement.alt = itemName;
@@ -138,7 +137,10 @@ const populateSelect = (category) => {
         });
 
         flavorSelect.addEventListener('change', function () {
-          imgElement.src = this.value;
+          const selectedFlavor = this.value;
+          imgElement.src = selectedFlavor;
+          selectedFlavors.add(selectedFlavor);
+          disableSelectedFlavors();
         });
       } else {
         flavorSelect.disabled = true;
@@ -151,7 +153,8 @@ const populateSelect = (category) => {
         const quantity = parseInt(quantityInput.value) || 0;
         updateTotal(-quantity * selectedItem.price);
         itemWrapper.remove();
-        warningMessage.classList.add('hidden');
+        removeFlavorFromSet(flavorSelect.value);
+        disableSelectedFlavors();
       });
 
       const itemWrapper = document.createElement('div');
@@ -174,18 +177,33 @@ const populateSelect = (category) => {
       this.selectedIndex = 0;
       updateTotal(selectedItem.price);
     } else {
-      showWarningMessage(`${itemName} já foi adicionado.`);
+      const quantityInput = itemWrapper.querySelector('.item-quantity');
+      const newQuantity = parseInt(quantityInput.value) + 1;
+      quantityInput.value = newQuantity;
+      updateTotal(selectedItem.price);
     }
+
+    disableSelectedFlavors();
   });
 
   return select;
 };
 
-const showWarningMessage = (message) => {
-  warningMessage.textContent = message;
-  warningMessage.classList.remove('hidden');
-  warningMessage.scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => {
-    warningMessage.classList.add('hidden');
-  }, 3000);
+const disableSelectedFlavors = () => {
+  const allFlavorSelects = document.querySelectorAll('.flavor-select');
+  allFlavorSelects.forEach(flavorSelect => {
+    const options = Array.from(flavorSelect.options);
+    options.forEach(option => {
+      if (selectedFlavors.has(option.value)) {
+        option.disabled = true;
+      } else {
+        option.disabled = false;
+      }
+    });
+  });
+};
+
+const removeFlavorFromSet = (flavor) => {
+  selectedFlavors.delete(flavor);
+  disableSelectedFlavors();
 };
