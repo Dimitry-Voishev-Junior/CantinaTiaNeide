@@ -50,21 +50,21 @@ const totalElement = document.getElementById('total');
 
 let total = 0;
 
-function updateTotal(price) {
+const updateTotal = (price) => {
   total += price;
   totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
-}
+};
 
-function itemAlreadyExists(itemName) {
+const itemAlreadyExists = (itemName) => {
   const existingItems = Array.from(imageContainer.children);
   return existingItems.some(itemWrapper => {
     const title = itemWrapper.querySelector('.item-title').textContent;
     return title === itemName;
   });
-}
+};
 
 checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', function () {
+  checkbox.addEventListener('change', () => {
     selectContainer.innerHTML = '';
     warningMessage.classList.add('hidden');
 
@@ -82,7 +82,7 @@ checkboxes.forEach(checkbox => {
   });
 });
 
-function populateSelect(category) {
+const populateSelect = (category) => {
   const select = document.createElement('select');
   select.id = `${category}-select`;
   select.innerHTML = `<option value="" disabled selected>Selecione um item de ${category}</option>`;
@@ -174,11 +174,18 @@ function populateSelect(category) {
       this.selectedIndex = 0;
       updateTotal(selectedItem.price);
     } else {
-      warningMessage.textContent = `${itemName} já foi adicionado.`;
-      warningMessage.classList.remove('hidden');
-      warningMessage.scrollIntoView({ behavior: 'smooth' });
+      showWarningMessage(`${itemName} já foi adicionado.`);
     }
   });
 
   return select;
-}
+};
+
+const showWarningMessage = (message) => {
+  warningMessage.textContent = message;
+  warningMessage.classList.remove('hidden');
+  warningMessage.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    warningMessage.classList.add('hidden');
+  }, 3000);
+};
